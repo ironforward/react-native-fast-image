@@ -35,6 +35,24 @@ RCT_EXPORT_METHOD(preload:(nonnull NSArray<FFFastImageSource *> *)sources)
     [[SDWebImagePrefetcher sharedImagePrefetcher] prefetchURLs:urls];
 }
 
+RCT_EXPORT_METHOD(addFileToCache:(nonnull NSString *)filePath url:(nonnull NSString *)url resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject)
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    BOOL fileExist = [fileManager fileExistsAtPath: filePath];
+    UIImage *image;
+    if (fileExist) {
+        image = [[UIImage alloc] initWithContentsOfFile:filePath];
+        [SDImageCache.sharedImageCache storeImage:image forKey:url completion:^{
+            // image stored
+            resolve(NULL);
+        }];
+    } else {
+        // 1001 === SDWebImageErrorBadImageData
+        NSError *error = [NSError errorWithDomain:@"SDWebImageErrorDomain" code:1001 userInfo:@{NSLocalizedDescriptionKey : @"No image at filePath"}];
+        reject(@"error", @"error description", error);
+    }
+}
+
 RCT_EXPORT_METHOD(clearMemoryCache:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject)
 {
     [SDImageCache.sharedImageCache clearMemory];
