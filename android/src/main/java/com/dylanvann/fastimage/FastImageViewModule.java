@@ -56,6 +56,17 @@ class FastImageViewModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
+    public void addFileToCache(final String filePath, final String url, final Promise promise) {
+        final Activity activity = getCurrentActivity();
+        if (activity == null) {
+            promise.resolve(null);
+            return;
+        }
+        // todo: add the file to the cache for android
+        promise.resolve(null);
+    }
+
+    @ReactMethod
     public void clearMemoryCache(final Promise promise) {
         final Activity activity = getCurrentActivity();
         if (activity == null) {
