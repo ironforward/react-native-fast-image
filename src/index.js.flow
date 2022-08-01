@@ -41,6 +41,7 @@ export type Priorities = $Values<Priority>
 export type CacheControls = $Values<CacheControl>
 
 export type PreloadFn = (sources: Array<FastImageSource>) => void
+export type AddFileToCacheFn = (filePath: string, url: string) => Promise<void>
 export type FastImageSource = {
     uri?: string,
     headers?: Object,
@@ -68,6 +69,7 @@ declare export default class FastImage extends React$Component<FastImageProps> {
     static priority: Priority;
     static cacheControl: CacheControl;
     static preload: PreloadFn;
+    static addFileToCache: AddFileToCacheFn;
     static clearMemoryCache: () => Promise<void>;
     static clearDiskCache: () => Promise<void>;
 }
