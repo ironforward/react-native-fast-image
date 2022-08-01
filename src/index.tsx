@@ -222,7 +222,7 @@ FastImage.preload = (sources: Source[]) =>
     FastImageViewNativeModule.preload(sources)
 
 FastImage.addFileToCache = (filePath: string, url: string) =>
-    FastImageViewNativeModule.addUriToCacheForUrl(filePath, url)
+    FastImageViewNativeModule.addFileToCache(filePath, url)
 
 FastImage.clearMemoryCache = () => FastImageViewNativeModule.clearMemoryCache()
 
