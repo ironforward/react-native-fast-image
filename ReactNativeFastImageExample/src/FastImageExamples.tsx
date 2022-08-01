@@ -12,13 +12,14 @@ import { ResizeModeExample } from './ResizeModeExample'
 import { TintColorExample } from './TintColorExample'
 import { LocalImagesExample } from './LocalImagesExample'
 import { AutoSizeExample } from './AutoSizeExample'
+import { AddPickedImageToCacheExample } from './AddPickedImageToCacheExample'
 
 const FastImageExample = () => (
     <View style={styles.container}>
         <StatusBar
             translucent
-            barStyle="dark-content"
-            backgroundColor="transparent"
+            barStyle='dark-content'
+            backgroundColor='transparent'
         />
         <ScrollView
             style={styles.scrollContainer}
@@ -27,8 +28,9 @@ const FastImageExample = () => (
             <View style={styles.contentContainer}>
                 <Section>
                     <Text style={styles.titleText}>🚩 FastImage</Text>
-                    <FeatureText text="Tap images to reload examples." />
+                    <FeatureText text='Tap images to reload examples.' />
                 </Section>
+                <AddPickedImageToCacheExample />
                 <PriorityExample />
                 <GifExample />
                 <BorderRadiusExample />
